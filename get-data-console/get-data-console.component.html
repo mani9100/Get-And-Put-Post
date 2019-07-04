@@ -1,0 +1,47 @@
+ <div>
+  <div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="deptId">
+        <th mat-header-cell *matHeaderCellDef>deptId</th>
+        <td mat-cell *matCellDef="let users"> {{users.deptId}} </td>
+      </ng-container>
+      <ng-container matColumnDef="deptName">
+        <th mat-header-cell *matHeaderCellDef>deptName</th>
+        <td mat-cell *matCellDef="let users"> {{users.deptName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>description</th>
+        <td mat-cell *matCellDef="let users"> {{users.description}} </td>
+      </ng-container>
+      <ng-container matColumnDef="creditName">
+        <th mat-header-cell *matHeaderCellDef>creditName</th>
+        <td mat-cell *matCellDef="let users"> {{users.creditType.creditName}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div>
+      <mat-paginator [length]="users.length" [pageSizeOptions]="[5,10,15]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div> 
+<div>
+<button (click)="getDataFromService()" style="color:green">AddData</button>
+</div>
+  <div>
+    <div *ngFor="let use of  filteredUsers || users ">
+      <mat-card class="example-card ">
+        <mat-card-title>Id:-{{use.deptId}} <button mat-button (click)="updateDepartment(use)" style="background-color: green">Update</button>
+        <button mat-button (click)="deleteDepartments(use.deptId)" class="delete"> Delete</button>
+        </mat-card-title>
+        <strong> Name:-</strong>{{use.deptName}} <br/>
+        <strong>Description:-</strong> {{use.description}}<br/>
+        <strong> CreditName:-</strong>{{use.creditType.creditName}}<br/>
+      </mat-card>
+    </div>
+    <div>
+        <mat-paginator [length]="users.length"  [pageSizeOptions]="[1,5,10,13,15,17,20]" showFirstLastButton
+          (page)="pageEvent = OnPageChange($event)">
+        </mat-paginator>
+      </div>
+  </div>
+  <br>

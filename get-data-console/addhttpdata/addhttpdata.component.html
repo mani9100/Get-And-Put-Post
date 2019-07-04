@@ -1,0 +1,32 @@
+<form [formGroup]="serviceForm">
+  <mat-form-field>
+    <input matInput minlength="5" placeholder="DepartmentName" formControlName="DepartmentName" required>
+    <mat-error *ngIf="serviceForm.controls.DepartmentName.errors?.required">
+      Enter Your Departmentname
+    </mat-error>  
+    <mat-error *ngIf="serviceForm.controls.DepartmentName.errors?.minlength">
+      Enter minimum 5 Characters
+    </mat-error>
+    <mat-error *ngIf="serviceForm.controls.DepartmentName.errors?.pattern">
+      Enter Characters Only
+    </mat-error>    
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput minlength="5"  placeholder="Description" formControlName="Description" required>
+    <mat-error *ngIf="serviceForm.controls.Description.errors?.required">
+      Enter Description
+    </mat-error>
+    <mat-error *ngIf="serviceForm.controls.Description.errors?.minlength">
+      Enter Minimum 5 Characters
+    </mat-error>
+    <mat-error *ngIf="serviceForm.controls.Description.errors?.pattern">
+      Enter Characters Only
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Credit Type" formControlName="CreditType">
+      <mat-option *ngFor="let Credittype of CredittypeController" [value]="Credittype.creditTypeId">{{Credittype.creditName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button [disabled]="serviceForm.invalid" (click)="add($event)">Add Data</button>
+</form>   

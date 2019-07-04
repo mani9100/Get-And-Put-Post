@@ -1,0 +1,17 @@
+<form [formGroup]="UpdateForm">
+  <mat-form-field>
+    <input matInput placeholder="EnterDepartmentname" formControlName="deptName" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="EnterDescription" formControlName="description" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Credit Type" formControlName="creditType">
+      <mat-option></mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+  <div>
+    <button mat-button (click)="cancel()" class="cancel" >Cancel</button>
+    <button mat-button (click)="Update()" class="submit">Submit</button>
+  </div>
